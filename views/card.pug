@@ -1,0 +1,17 @@
+extends layout
+
+block scripts
+  script(src='https://js.stripe.com/v3/')
+  script(src='/javascripts/script.js')
+
+block content
+  h1 Complete your donation
+  p= 'Thank you, ' + name + ', for your generosity! Please enter your payment details below to complete your donation.'
+  form(id='card' method='POST' action='/donate/thanks')
+    div
+      label(for='cardholder-name') Cardholder name:
+      input#cardholder-name(type='text' name='cardholder-name' value=(name))
+    div#card-element
+    div#card-errors
+  div
+      button#card-button(data-secret=(intentSecret))= ('Donate ¥' + amount)
